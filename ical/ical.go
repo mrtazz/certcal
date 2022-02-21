@@ -6,25 +6,6 @@ import (
 	"time"
 )
 
-// general calendar format
-//BEGIN:VCALENDAR
-//VERSION:2.0
-//METHOD:PUBLISH
-//PRODID:-//schulferien.org//iCal Generator//DE
-//BEGIN:VEVENT
-//CREATED:20220110T032314Z
-//LAST-MODIFIED:20220110T032314Z
-//DTSTAMP:20220110T032314Z
-//SUMMARY:Winterferien 2021 Berlin
-//DTSTART;VALUE=DATE:20210201
-//DTEND;VALUE=DATE:20210207
-//URL:http://www.schulferien.org
-//DESCRIPTION:Alle Termine auf www.schulferien.org
-//TRANSP:TRANSPARENT
-//UID:F_2021_termin61db9894553f9@schulferien.org
-//END:VEVENT
-//END:VCALENDAR
-
 const (
 	icalTemplate = `BEGIN:VCALENDAR
 VERSION:2.0
