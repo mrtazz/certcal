@@ -22,9 +22,9 @@ of:
 
 ```go
 import (
-	"github.com/mrtazz/certcal/handler"
-	"github.com/mrtazz/certcal/hosts"
-	"net/http"
+  "github.com/mrtazz/certcal/handler"
+  "github.com/mrtazz/certcal/hosts"
+  "net/http"
   "time"
 )
 
@@ -32,11 +32,11 @@ func Run() {
 
   ...
 
-	hosts.AddHosts([]string{"unwiredcouch.com"})
-	hosts.UpdateEvery(5 * time.Hour)
+  hosts.AddHosts([]string{"unwiredcouch.com"})
+  hosts.UpdateEvery(5 * time.Hour)
 
-	http.HandleFunc("/hosts", handler.Handler)
-	http.ListenAndServe(":3000", nil)
+  http.HandleFunc("/hosts", handler.Handler)
+  http.ListenAndServe(":3000", nil)
 
 }
 ```
