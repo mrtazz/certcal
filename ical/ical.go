@@ -2,6 +2,8 @@ package ical
 
 import (
 	"bytes"
+	"crypto/sha256"
+	"fmt"
 	"text/template"
 	"time"
 )
@@ -22,7 +24,7 @@ DTEND;VALUE=DATE:{{ .End.Format "20060102"}}
 URL:{{ .URL }}
 DESCRIPTION:{{ .Description }}
 TRANSP:TRANSPARENT
-UID: @certcal.mrtazz.github.com
+UID:{{ .UID }}@certcal.mrtazz.github.com
 END:VEVENT
 {{- end }}
 END:VCALENDAR`
@@ -38,11 +40,18 @@ type Event struct {
 	End          time.Time
 	URL          string
 	Description  string
+	UID          string
 }
 
 // Calendar represents a calendar feed
 type Calendar struct {
 	Events []Event
+}
+
+// AddEvent adds an event to the calendar
+func (c *Calendar) AddEvent(e Event) {
+	e.UID = fmt.Sprintf("%x", sha256.Sum256([]byte(e.Summary)))
+	c.Events = append(c.Events, e)
 }
 
 // Render a calendar feed

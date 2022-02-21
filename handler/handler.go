@@ -28,17 +28,16 @@ func Handler(w http.ResponseWriter, req *http.Request) {
 
 	for _, h := range checkedHosts {
 		if len(h.Certs) > 0 {
-			cal.Events = append(cal.Events,
-				ical.Event{
-					CreatedAt:    time.Now(),
-					LastModified: time.Now(),
-					DtStamp:      time.Now(),
-					Summary:      fmt.Sprintf("cert for %s expires", h.HostString),
-					Start:        h.Certs[0].NotAfter,
-					End:          h.Certs[0].NotAfter,
-					URL:          "",
-					Description:  fmt.Sprintf("cert for %s expires", h.HostString),
-				})
+			cal.AddEvent(ical.Event{
+				CreatedAt:    time.Now(),
+				LastModified: time.Now(),
+				DtStamp:      time.Now(),
+				Summary:      fmt.Sprintf("cert for %s expires", h.HostString),
+				Start:        h.Certs[0].NotAfter,
+				End:          h.Certs[0].NotAfter,
+				URL:          "",
+				Description:  fmt.Sprintf("cert for %s expires", h.HostString),
+			})
 		}
 	}
 
