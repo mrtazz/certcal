@@ -6,7 +6,7 @@ WORKDIR /app
 
 ADD . /app/
 
-RUN go build certcal.go -o certcal
+RUN go build -o certcal certcal.go
 
 FROM alpine:3.15
 RUN apk --no-cache add ca-certificates
