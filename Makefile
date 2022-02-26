@@ -28,12 +28,10 @@ LDFLAGS := -X 'main.version=$(VERSION)' \
 TARGETS := certcal
 INSTALLED_TARGETS = $(addprefix $(PREFIX)/bin/, $(TARGETS))
 
+.PHONY: certcal
 certcal: certcal.go
 	GOOS=$(BUILD_GOOS) GOARCH=$(BUILD_GOARCH) go build -ldflags "$(LDFLAGS)" -o $@ $<
-
-.PHONY: all
-all: $(TARGETS) $(MAN_TARGETS)
-.DEFAULT_GOAL:=all
+.DEFAULT_GOAL:=certcal
 
 # development tasks
 .PHONY: test
