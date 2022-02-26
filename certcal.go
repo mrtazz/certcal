@@ -50,7 +50,6 @@ func main() {
 			"address": address,
 		}).Info("starting web server")
 		http.HandleFunc("/hosts", handler.Handler)
-		//http.HandleFunc("/metrics", headers)
 		http.ListenAndServe(address, nil)
 
 	default:
