@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func TestSomething(t *testing.T) {
+func TestRender(t *testing.T) {
 
 	testDate := time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC)
 	assert := assert.New(t)
