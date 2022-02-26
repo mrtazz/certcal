@@ -11,6 +11,18 @@ There are a couple of ways to run this
 You can download one of the binaries and run it as a standalone:
 
 ```shell
+% ./certcal serve --help
+Usage: certcal serve --hosts=HOSTS,... --interval="24h"
+
+run the server.
+
+Flags:
+  -h, --help               Show context-sensitive help.
+
+      --hosts=HOSTS,...    hosts to check certs for ($CERTCAL_HOSTS).
+      --interval="24h"     interval in which to check certs ($CERTCAL_INTERVAL)
+      --port=3000          port for the server to listen on ($PORT)
+
 % PORT=3000 CERTCAL_INTERVAL=5h CERTCAL_HOSTS="unwiredcouch.com" ./certcal
 ```
 
@@ -43,7 +55,11 @@ func Run() {
 
 
 ### Via Docker
-There is a docker image as well that you can use
+There is a docker image as well that you can use:
+
+```sh
+docker pull ghcr.io/mrtazz/certcal
+```
 
 
 ## FAQ
