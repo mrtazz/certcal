@@ -74,6 +74,8 @@ func AddHosts(hostStrings []string) {
 	for _, h := range hostStrings {
 		AddHost(h)
 	}
+	// run a first update in the background
+	go updateAllHosts()
 }
 
 // GetCerts retrieves certs for the configure Host
