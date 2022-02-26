@@ -27,9 +27,9 @@ jobs:
 
     - name: build for platforms
       run: |
-        BUILD_GOARCH=amd64 BUILD_GOOS=freebsd make build-standalone
-        BUILD_GOARCH=amd64 BUILD_GOOS=linux   make build-standalone
-        BUILD_GOARCH=amd64 BUILD_GOOS=darwin  make build-standalone
+        BUILD_GOARCH=amd64 BUILD_GOOS=freebsd make build-artifact
+        BUILD_GOARCH=amd64 BUILD_GOOS=linux   make build-artifact
+        BUILD_GOARCH=amd64 BUILD_GOOS=darwin  make build-artifact
 
     - name: create release
       run: make github-release
@@ -40,7 +40,7 @@ jobs:
     name: docker
     env:
       BUILDER_NAME: "GitHub Actions"
-      BUILDER_EMAIL: noreply@actions.github.com
+      BUILDER_EMAIL: actions@noreply.github.com
 
     runs-on: ubuntu-latest
 
@@ -48,13 +48,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag mrtazz/certcal:${GITHUB_SHA} --tag mrtazz/certcal:latest
-
-    - name: push to docker hub
-      run: |
-        echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login -u mrtazz --password-stdin
-        docker push mrtazz/certcal:${GITHUB_SHA}
-        docker push mrtazz/certcal:latest
-        docker logout hub.docker.com
 
     - name: push to ghcr
       run: |
